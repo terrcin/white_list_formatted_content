@@ -2,7 +2,7 @@ ActiveRecord::Base.class_eval do
     include ActionView::Helpers::TagHelper, ActionView::Helpers::TextHelper, WhiteListHelper
     def self.format_attribute(options)  
       class << self; include ActionView::Helpers::TagHelper, ActionView::Helpers::TextHelper, WhiteListHelper; end
-      @@formatted_fields = options
+      @@formatted_fields = options.to_a
       @@formatted_fields.each do |field|
         field=field.to_s
         define_method(field.to_sym)           { read_attribute field }
