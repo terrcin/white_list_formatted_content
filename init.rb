@@ -28,9 +28,10 @@ ActiveRecord::Base.class_eval do
     def field_html_with_formatting(field)
       field_html = auto_link eval("#{field.to_s}") { |text| truncate(text, 50) }
       # textilized = RedCloth.new(field_html, [ :hard_breaks ])
-      textilized = RedCloth.new(field_html)
-      textilized.hard_breaks = true if textilized.respond_to?("hard_breaks=")
-      white_list(textilized.to_html)
+      # textilized = RedCloth.new(field_html)
+      # textilized.hard_breaks = true if textilized.respond_to?("hard_breaks=")
+      # white_list(textilized.to_html)
+      white_list(field_html)
     end
 end
 
